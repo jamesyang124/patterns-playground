@@ -20,6 +20,8 @@ class Observer
   def update; end
 end
 
+# if observer subscription method depends on external source
+# then subject could be stateless
 class Subject
   def initialize
     @observers = []
@@ -49,6 +51,9 @@ class Subject
 end
 
 class InchObserver < Observer
+
+  # subject can be composed in observer instance
+  # or decouple if subscription method is stateless
   def initialize(subject)
     super(subject)
     @subject.add(self)
